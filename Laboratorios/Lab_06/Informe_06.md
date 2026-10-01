@@ -190,11 +190,13 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
   
    
    - **¿Existe alguna diferencia en la señal entre las dos ubicaciones, FP1 y FP2?** 
+   
    FP1 está ubicado en la zona frontal izquierda y FP2 en la zona frontal derecha, por lo que pueden registrar diferencias relacionadas con la actividad de cada lado del cerebro. También pueden verse afectados de manera distinta por los movimientos de los ojos y de los músculos de la frente.
 
    Sin embargo, en nuestro montaje FP1 y FP2 no se registraron como señales separadas. FP1 se utilizó como entrada positiva y FP2 como entrada negativa de un mismo canal bipolar. Por lo tanto, la señal obtenida representa la diferencia de potencial entre ambos puntos. Para comparar cada ubicación por separado sería necesario utilizar dos canales o realizar adquisiciones independientes manteniendo la misma referencia.
 
    - **Que frecuencias deberían variar durante las tareas planteadas?¿Es posible observar cambios específicos en la señal en bruto (RAW)? Describa lo que observa**
+   
    Durante la apertura y cierre de ojos se espera principalmente una variación de la banda alfa, la cual suele aumentar cuando la persona se encuentra relajada y con los ojos cerrados. Al abrir los ojos, esta actividad puede disminuir.
 
    Durante las preguntas complejas pueden presentarse cambios en las bandas theta y beta, debido a que la persona se encuentra realizando una tarea mental que requiere atención y concentración. Para las pruebas de música suave y música estruendosa no se puede relacionar directamente una sola banda sin analizar los resultados obtenidos.
@@ -202,6 +204,7 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
    En la señal RAW se observaron variaciones de amplitud y de forma entre las pruebas. Sin embargo, no es posible reconocer claramente una banda de frecuencia solamente observando la señal en bruto. Algunos cambios también pueden deberse al parpadeo, al movimiento de los ojos, a la actividad de los músculos faciales o al contacto de los electrodos. Por eso, es necesario complementar la señal RAW con el análisis en frecuencia.
 
    - **Según su criterio, ¿la amplitud de la señal de EEG se corresponde con el nivel de concentración aplicado?**
+   
    No necesariamente. Una mayor amplitud en la señal EEG no significa directamente que la persona se encuentre más concentrada. La amplitud también puede cambiar por el movimiento de los ojos, la actividad de los músculos faciales, la posición de los electrodos o el contacto de estos con la piel.
 
 
