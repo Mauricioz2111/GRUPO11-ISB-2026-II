@@ -31,41 +31,43 @@ Las condiciones evaluadas fueron:
 - 
 
 ## Materiales y equipos
-- 
-- 
-- 
-- 
--
+- BITalino (r)evolution Assembled Core BT.
+- Sensor de electroencefalografía (EEG).
+- Cable de referencia de un electrodo.
+- Tres electrodos desechables autoadhesivos de Ag/AgCl con gel.
+- OpenSignals (r)evolution.
+- Adaptador Bluetooth.
+- Audífonos.
 
 ## Procedimiento general
-El sensor ECG se conectó a uno de los canales analógicos disponibles del BITalino. Después, los tres cables del sensor se conectaron a sus respectivos electrodos: entrada positiva (IN+), entrada negativa (IN−) y referencia (REF). Una vez verificada la conexión, se inició el registro en OpenSignals.
+----- 
 
-Se realizaron adquisiciones utilizando las derivaciones I, II y III de Einthoven. Para cada derivación se evaluaron cuatro condiciones:
-- Reposo.
-- Hipoventilación.
-- Hiperventilación.
-- Actividad física.
-
-Durante el registro en reposo, el participante permaneció quieto y respiró con normalidad. En las pruebas respiratorias se modificó voluntariamente el patrón de respiración para generar las condiciones de hipoventilación e hiperventilación. Para la actividad física, el participante realizó el ejercicio establecido por el grupo y se registró la señal ECG correspondiente.
-Finalmente, se detuvo cada adquisición y los registros obtenidos se guardaron en formato H5 y TXT para su posterior análisis.
 
 ## Resultados
 Se empleó una conexión bipolar frontal. FP1 se utilizó como entrada positiva (IN+), FP2 como entrada negativa (IN−) y el electrodo de referencia se colocó detrás de la oreja.
 
-# foto de conexión hecha por el grupo a WILL
+<p align="center">
+  <img src="./Imágenes/Conexiones_iniciales_electrodos.jpg" alt="Conexiones para iniciar con las mediciones" width="500">
+</p>
+
 
 ## PRUEBA 1: Línea basal y apertura/cierre de ojos
 
 #### A. Línea basal
 El participante permaneció relajado, en silencio y sin estímulos externos durante aproximadamente uno a dos minutos. Se evitó el movimiento de la cabeza, los ojos y los músculos faciales para obtener una señal basal con la menor cantidad posible de artefactos.
 
-
+<p align="center">
+  <img src="./Imágenes/estado_basal_usuario.jpg" alt="Conexiones para iniciar con las mediciones" width="500">
+</p>
 
 #### B. Apertura y cierre de ojos
 Después de registrar la línea basal, se realizaron cinco repeticiones de apertura y cierre de los ojos. Cada estado se mantuvo durante aproximadamente cinco segundos.
 
 Esta prueba permitió comparar la señal obtenida con los ojos abiertos y cerrados. La actividad alfa suele presentar una mayor presencia durante la relajación con los ojos cerrados y disminuir al abrirlos. Sin embargo, este cambio se puede observar con mayor claridad mediante el análisis en frecuencia.
 
+<p align="center">
+  <img src="./Imágenes/apertura_cierre_ojos.jpg" alt="apertura y cierre de ojos" width="500">
+</p>
 
 
 ### Video de la señal 
@@ -97,10 +99,13 @@ Para facilitar la visualización, se seleccionaron segmentos representativos de 
 #### B. Apertura y cierre de ojos
 
 
+
 ## PRUEBA 2: Preguntas complejas
 Durante esta prueba se evaluó la señal EEG mientras el participante resolvía mentalmente cinco preguntas complejas. Para escuchar las indicaciones, se retiró uno de los audífonos. Cada pregunta tuvo una duración aproximada de 20 a 30 segundos.
 
 El participante no respondió en voz alta y trató de mantener la cabeza, los ojos y los músculos faciales sin movimiento. El objetivo fue comparar la señal durante una tarea que requería atención y concentración con la señal obtenida durante la línea basal.
+
+https://github.com/user-attachments/assets/3ac32c37-c18b-4bc2-b448-029a8ecd0cd7
 
 
 ### Video de la señal 
@@ -122,6 +127,10 @@ Durante esta prueba, el participante escuchó música suave durante aproximadame
 
 El objetivo fue registrar la señal EEG frente a un estímulo auditivo de baja intensidad y compararla posteriormente con la línea basal y con la prueba de música estruendosa.
 
+<p align="center">
+  <img src="./Imágenes/musica_suave_usuario.jpg" alt="usuario escuchando música suave" width="500">
+</p>
+
 ### Video de la señal 
 
 
@@ -135,12 +144,15 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
 ### Ploteo de la señal en Python
 
 
-
-**## PRUEBA 4: Música estruendosa**
+## PRUEBA 4: Música estruendosa
 
 Durante esta prueba, el participante escuchó música estruendosa durante aproximadamente uno a un minuto y medio. Se mantuvieron las mismas condiciones de postura y conexión utilizadas durante la prueba de música suave.
 
 El objetivo fue comparar la señal EEG obtenida con ambos estímulos auditivos. Para realizar esta comparación se debe considerar que los cambios también pueden estar relacionados con la atención, el tipo de música y los movimientos involuntarios del participante.
+
+https://github.com/user-attachments/assets/1a4c9c3c-34a6-4660-af5a-29180aa9f87b
+
+
 
 ### Video de la señal 
 
@@ -178,10 +190,10 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
    Dando ejemplos de acciones que puedan activar una banda de frecuencia específica, si nos relajamos y cerramos los ojos, se puede aumenta la actividad alfa, especialmente en regiones posteriores; si nos concentramos en una tarea mental, se puede modificar principalmente la actividad beta dependiendo de la tarea.
    Por último, sí, el puede puede visualizarse en el EEG, aunque normalmente es más evidente al analizar la potencia de una banda mediante un espectro de frecuencia o un análisis tiempo-frecuencia que simplemente observando la señal cruda. Por ejemplo, al comparar ojos abiertos vs. ojos cerrados (como en el laboratorio), puede observarse un incremento de la potencia alfa durante los ojos cerrados.
 
-   - **Muestre una captura de pantalla de una parte relevante de los datos de EEG obtenidos en el experimento propuesto.¿Corresponde esta señal a lo que esperaba?¿Por qué?**
-   asda
+   - **Muestre una captura de pantalla de una parte relevante de los datos de EEG obtenidos en el experimento propuesto.¿Corresponde esta señal a lo que esperaba?¿Por qué?** (WILL)
+  
    
-   - **¿Existe alguna diferencia en la señalentre las dos ubicaciones, FP1 y FP2?** 
+   - **¿Existe alguna diferencia en la señal entre las dos ubicaciones, FP1 y FP2?** 
   
 
    - **Que frecuencias deberían variar durante las tareas planteadas?¿Es posible observar cambios específicos en la señal en bruto (RAW)? Describa lo que observa**
