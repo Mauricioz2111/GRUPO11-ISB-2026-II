@@ -75,12 +75,8 @@ Esta prueba permitió comparar la señal obtenida con los ojos abiertos y cerrad
 
 
 ### Ploteo de la señal en OpenSignal
-Para facilitar la visualización, se seleccionaron segmentos representativos de la línea basal y de los ciclos de apertura y cierre de ojos.
-
-#### A. Línea basal
 
 
-#### B. Apertura y cierre de ojos
 
 
 
@@ -89,12 +85,9 @@ Para facilitar la visualización, se seleccionaron segmentos representativos de 
 
 ### Ploteo de la señal en Python
 
-#### A. Línea basal
+<img width="1800" height="600" alt="eeg_plot_Repsoso" src="https://github.com/user-attachments/assets/c167183a-394f-4ef3-82ae-bcea8a687970" />
 
-
-#### B. Apertura y cierre de ojos
-
-
+<img width="1800" height="600" alt="eeg_fft_Reposo" src="https://github.com/user-attachments/assets/85480594-77d7-41ae-9a62-33a6fae45885" />
 
 ## PRUEBA 2: Preguntas complejas
 Durante esta prueba se evaluó la señal EEG mientras el participante resolvía mentalmente cinco preguntas complejas. Para escuchar las indicaciones, se retiró uno de los audífonos. Cada pregunta tuvo una duración aproximada de 20 a 30 segundos.
@@ -116,6 +109,9 @@ En la imagen se presenta la señal EEG registrada mientras el participante resol
 
 ### Ploteo de la señal en Python
 
+<img width="1800" height="600" alt="eeg_plot_Parpadeos" src="https://github.com/user-attachments/assets/90383cf5-576d-42c9-87ae-9b8e17256f79" />
+
+<img width="1800" height="600" alt="eeg_fft_Parpadeos" src="https://github.com/user-attachments/assets/f91e895e-c21c-41e7-9bfe-4111f1bdfd34" />
 
 ## PRUEBA 3: Música suave
 
@@ -139,6 +135,9 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
 
 ### Ploteo de la señal en Python
 
+<img width="1800" height="600" alt="eeg_plot_Preguntas" src="https://github.com/user-attachments/assets/d407dce0-e14f-44b7-abef-e1227673d437" />
+
+<img width="1800" height="600" alt="eeg_fft_Preguntas" src="https://github.com/user-attachments/assets/83f5cece-fa15-410c-81a9-e6ba5918802b" />
 
 ## PRUEBA 4: Música fuerte (estruendosa)
 
@@ -162,9 +161,9 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
 
 ### Ploteo de la señal en Python
 
+<img width="1800" height="600" alt="eeg_plot_Musica" src="https://github.com/user-attachments/assets/250282a5-44f7-4fd3-99bf-7bb6674855d5" />
 
-
-
+<img width="1800" height="600" alt="eeg_fft_Musica" src="https://github.com/user-attachments/assets/9da9a74c-2464-4c0c-84cb-1262dbbc64c1" />
 
 ## Preguntas de la sesión
 
