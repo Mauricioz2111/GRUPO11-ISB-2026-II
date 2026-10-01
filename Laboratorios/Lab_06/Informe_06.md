@@ -82,6 +82,7 @@ Esta prueba permitió comparar la señal obtenida con los ojos abiertos y cerrad
 
 ### Archivos
 
+[EEG - Reposo y parpadeos](https://github.com/Mauricioz2111/GRUPOX-ISB-2026-II/blob/main/Laboratorios/Lab_06/Datos_Señales/Datos_SinEstimulo_Parpadeo.csv)
 
 ### Ploteo de la señal en Python
 
@@ -106,6 +107,7 @@ En la imagen se presenta la señal EEG registrada mientras el participante resol
 
 ### Archivos
 
+[EEG - Preguntas](https://github.com/Mauricioz2111/GRUPOX-ISB-2026-II/blob/main/Laboratorios/Lab_06/Datos_Señales/Data_Preguntas.csv)
 
 ### Ploteo de la señal en Python
 
@@ -132,6 +134,7 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
 
 ### Archivos
 
+[EEG - Música Suave](https://github.com/Mauricioz2111/GRUPOX-ISB-2026-II/blob/main/Laboratorios/Lab_06/Datos_Señales/Data_Musica_Suave.csv)
 
 ### Ploteo de la señal en Python
 
@@ -158,6 +161,7 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
 
 ### Archivos
 
+[EEG - Música Estruendosa](https://github.com/Mauricioz2111/GRUPOX-ISB-2026-II/blob/main/Laboratorios/Lab_06/Datos_Señales/Data_Musica_fuerte.csv)
 
 ### Ploteo de la señal en Python
 
