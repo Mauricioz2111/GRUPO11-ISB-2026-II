@@ -189,8 +189,11 @@ En la siguiente imagen se presenta la señal EEG registrada mientras el particip
    Dando ejemplos de acciones que puedan activar una banda de frecuencia específica, si nos relajamos y cerramos los ojos, se puede aumenta la actividad alfa, especialmente en regiones posteriores; si nos concentramos en una tarea mental, se puede modificar principalmente la actividad beta dependiendo de la tarea.
    Por último, sí, el puede puede visualizarse en el EEG, aunque normalmente es más evidente al analizar la potencia de una banda mediante un espectro de frecuencia o un análisis tiempo-frecuencia que simplemente observando la señal cruda. Por ejemplo, al comparar ojos abiertos vs. ojos cerrados (como en el laboratorio), puede observarse un incremento de la potencia alfa durante los ojos cerrados.
 
-   - **Muestre una captura de pantalla de una parte relevante de los datos de EEG obtenidos en el experimento propuesto.¿Corresponde esta señal a lo que esperaba?¿Por qué?** (WILL)
-  
+   - **Muestre una captura de pantalla de una parte relevante de los datos de EEG obtenidos en el experimento propuesto.¿Corresponde esta señal a lo que esperaba?¿Por qué?** 
+   ![alt text](Imágenes/EEG1.png)
+   La señal obtenida presenta oscilaciones rápidas compatibles con una señal EEG; sin embargo, tambien se observan numerosos artefactos de gran amplitud que dificultan su interpretación. A continuación, se muestra un pedazo de la señal en la que se observan mejor los artefactos:
+   ![alt text](Imágenes/EEG1_Artefactos.png)
+   En el experimento se esperaba observar una mayor actividad en la banda alfa (8-13Hz) con los ojos cerrados y una disminución de esta al abrirlos. Aunque se observa actividad oscilatoria en la señal, los artefactos presentes impiden identificar claramente este comportamiento únicamente mediante la inspección visual. Por ello, sería necesario realizar un filtrado y un análisis de la potencia en la banda alfa para comprobar el efecto de abrir y cerrar los ojos
    
    - **¿Existe alguna diferencia en la señal entre las dos ubicaciones, FP1 y FP2?** 
    
