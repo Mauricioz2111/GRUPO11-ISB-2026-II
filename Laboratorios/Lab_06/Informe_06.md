@@ -13,7 +13,7 @@
 4. [Preguntas de la sesion](#preguntas-de-la-sesion)
 
 ## Objetivos
-- Adquirir una señal electroencefalográfica (EEG) en tiempo real utilizando BITalino y OpenSignals.
+- Adquirir una señal electroencefalográfica (ECG) en tiempo real utilizando BITalino y OpenSignals.
 - Reconocer los cambios de la señal durante el reposo, la apertura y cierre de los ojos y una tarea mental.
 - Comparar el comportamiento de la señal frente a música suave y música fuerte.
 - Relacionar las pruebas realizadas con las bandas de frecuencia delta, theta, alfa, beta y gamma.
