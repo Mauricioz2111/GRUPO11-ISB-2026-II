@@ -75,10 +75,7 @@ Esta prueba permitió comparar la señal obtenida con los ojos abiertos y cerrad
 
 
 ### Ploteo de la señal en OpenSignal
-
-
-
-
+![alt text](Imágenes/Prueba1_OV.png)
 
 ### Archivos
 
@@ -103,7 +100,7 @@ https://github.com/user-attachments/assets/3ac32c37-c18b-4bc2-b448-029a8ecd0cd7
 
 ### Ploteo de la señal en OpenSignal
 En la imagen se presenta la señal EEG registrada mientras el participante resolvía las cinco preguntas. Para facilitar su interpretación, se deben señalar los intervalos correspondientes a cada pregunta.
-
+![alt text](Imágenes/Prueba2_OV.png)
 
 ### Archivos
 
@@ -130,7 +127,7 @@ El objetivo fue registrar la señal EEG frente a un estímulo auditivo de baja i
 
 ### Ploteo de la señal en OpenSignal
 En la siguiente imagen se presenta la señal EEG registrada mientras el participante escuchaba música suave.
-
+![alt text](Imágenes/Prueba3_OV.png)
 
 ### Archivos
 
@@ -157,7 +154,7 @@ https://github.com/user-attachments/assets/1a4c9c3c-34a6-4660-af5a-29180aa9f87b
 
 ### Ploteo de la señal en OpenSignal
 En la siguiente imagen se presenta la señal EEG registrada mientras el participante escuchaba música estruendosa.
-
+![alt text](Imágenes/Prueba4_OV.png)
 
 ### Archivos
 
