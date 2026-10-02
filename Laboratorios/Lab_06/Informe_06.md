@@ -77,14 +77,15 @@ Esta prueba permitió comparar la señal obtenida con los ojos abiertos y cerrad
   <img src="./Imágenes/apertura_cierre_ojos.jpg" alt="apertura y cierre de ojos" width="500">
 </p>
 
-
 ### Video de la señal 
 
 #### A. Línea basal
 
+El vídeo se encuentra en la carpeta de vídeos, ya que el archivo era muy pesado. Se encuentra con el nombre "video estado basal y parpadeo 5s".
 
 #### B. Apertura y cierre de ojos
 
+El vídeo se encuentra en la carpeta de vídeos, ya que el archivo era muy pesado. Se encuentra con el nombre "video estado basal y parpadeo 5s".
 
 ### Ploteo de la señal en OpenSignal
 ![alt text](Imágenes/Prueba1_OV.png)
@@ -108,7 +109,7 @@ https://github.com/user-attachments/assets/3ac32c37-c18b-4bc2-b448-029a8ecd0cd7
 
 
 ### Video de la señal 
-
+El vídeo se encuentra en la carpeta de vídeos, ya que el archivo era muy pesado. Se encuentra con el nombre "video preguntas".
 
 ### Ploteo de la señal en OpenSignal
 En la imagen se presenta la señal EEG registrada mientras el participante resolvía las cinco preguntas. Para facilitar su interpretación, se deben señalar los intervalos correspondientes a cada pregunta.
@@ -135,7 +136,7 @@ El objetivo fue registrar la señal EEG frente a un estímulo auditivo de baja i
 </p>
 
 ### Video de la señal 
-
+El vídeo se encuentra en la carpeta de vídeos, ya que el archivo era muy pesado. Se encuentra con el nombre "video_estímulo_auditivo".
 
 ### Ploteo de la señal en OpenSignal
 En la siguiente imagen se presenta la señal EEG registrada mientras el participante escuchaba música suave.
@@ -159,10 +160,8 @@ El objetivo fue comparar la señal EEG obtenida con ambos estímulos auditivos. 
 
 https://github.com/user-attachments/assets/1a4c9c3c-34a6-4660-af5a-29180aa9f87b
 
-
-
 ### Video de la señal 
-
+El vídeo se encuentra en la carpeta de vídeos, ya que el archivo era muy pesado. Se encuentra con el nombre "video_estímulo_auditivo".
 
 ### Ploteo de la señal en OpenSignal
 En la siguiente imagen se presenta la señal EEG registrada mientras el participante escuchaba música estruendosa.
