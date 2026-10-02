@@ -36,8 +36,20 @@ Las condiciones evaluadas fueron:
 - Audífonos.
 
 ## Procedimiento general
------ (falta)
 
+El sensor EEG se conectó a uno de los canales analógicos disponibles del BITalino. Luego, el equipo se enlazó por Bluetooth con OpenSignals y se verificó que la señal pudiera visualizarse correctamente.
+
+Se utilizó una conexión bipolar frontal. El electrodo positivo (IN+) se colocó en FP1, el electrodo negativo (IN−) en FP2 y el electrodo de referencia se ubicó detrás de la oreja.
+
+Durante las adquisiciones se pidió al participante que permaneciera relajado y evitara mover la cabeza, la mandíbula y los músculos faciales, ya que estos movimientos podían introducir artefactos en la señal EEG.
+
+Se realizaron las siguientes pruebas:
+
+- Registro de una línea basal sin estímulos externos.
+- Cinco repeticiones de apertura y cierre de ojos.
+- Resolución mental de cinco preguntas complejas.
+- Exposición a música suave.
+- Exposición a música estruendosa.
 
 ## Resultados
 Se empleó una conexión bipolar frontal. FP1 se utilizó como entrada positiva (IN+), FP2 como entrada negativa (IN−) y el electrodo de referencia se colocó detrás de la oreja.
