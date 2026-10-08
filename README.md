@@ -1,4 +1,4 @@
-# GROUP 10 - Introducción a Señales Biomédicas (2026-II)
+# GROUP 11 - Introducción a Señales Biomédicas (2026-II)
 
 Bienvenidos al repositorio oficial del **Grupo 10** para el curso de **Introducción a Señales Biomédica (ISB-2026-II)**. En este espacio documentamos el progreso del equipo, presentaremos los avances y los entregables respectivos de cada sesión de laboratorio. 
 
