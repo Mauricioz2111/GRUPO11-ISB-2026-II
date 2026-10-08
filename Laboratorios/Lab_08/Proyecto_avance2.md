@@ -194,7 +194,43 @@ Tonin et al. (2020) se mantiene como antecedente complementario [17], [18]. Sirv
 ## 6. Video explicativo
 https://drive.google.com/file/d/1ySPxCaBtXhvw693gvcDpRNDxQyAkqF78/view?usp=sharing 
 
-## 7. Referencias bibliográficas
+## 7. Plan de acción
+
+
+## 8. Presentación de otros papers de investigación adicionales
+
+### 8.1. Interfaz adaptativa para personas con discapacidad motora
+
+- **Título:** *A practical efficient human computer interface based on saccadic eye movements for people with disabilities.*
+- **Autores:** Sima Soltani y Amin Mahnam.
+- **Año:** 2016.
+- **Revista:** *Computers in Biology and Medicine.*
+- **DOI:** https://doi.org/10.1016/j.compbiomed.2016.01.012
+
+En este trabajo se desarrolló una interfaz portátil que reconocía ocho direcciones de movimiento ocular y el parpadeo. Los autores utilizaron un algoritmo adaptativo para evitar que el sistema dependiera de una configuración igual para todos. También implementaron un entorno de escritura y un juego sencillo para que las personas pudieran practicar el uso de los comandos [21].
+
+La prueba de escritura se realizó con seis participantes sin discapacidad. En los primeros intentos se obtuvo una exactitud promedio de 82,9 %. Después de adquirir experiencia con el sistema, uno de los usuarios llegó a alcanzar 96 %. El juego también fue probado por seis personas con tetraplejia y dificultades importantes para hablar [21].
+
+Este paper se relaciona con nuestro proyecto porque combina el reconocimiento de movimientos oculares con una actividad interactiva. También muestra que el desempeño puede mejorar con la práctica y que el sistema debe tomar en cuenta las diferencias entre usuarios. En nuestro caso, realizaremos una calibración inicial para determinar qué movimientos puede controlar mejor cada persona.
+
+### 8.2. Clasificación de movimientos oculares para controlar un robot
+
+- **Título:** *Human–Machine Interface: Multiclass Classification by Machine Learning on 1D EOG Signals for the Control of an Omnidirectional Robot.*
+- **Autores:** Francisco David Pérez-Reynoso, Liliam Rodríguez-Guerrero, Julio César Salgado-Ramírez y Rocío Ortega-Palacios.
+- **Año:** 2021.
+- **Revista:** *Sensors.*
+- **DOI:** https://doi.org/10.3390/s21175882
+
+En este estudio, los autores desarrollaron una interfaz basada en EOG para controlar un robot omnidireccional. Para adquirir la señal utilizaron una estructura similar a unos lentes, la cual permitía registrar los componentes horizontal y vertical del EOG. El sistema diferenciaba cinco clases: mirada hacia la derecha, izquierda, arriba, abajo y parpadeo con la mirada al frente [22].
+
+Para reconocer los movimientos oculares probaron diferentes algoritmos, entre ellos Random Forest, Random Tree, KNN, SVM y perceptrón multicapa. Random Forest y Random Tree alcanzaron una precisión de 98,6 % durante la evaluación. Sin embargo, para implementar el sistema eligieron el perceptrón multicapa porque presentaba un equilibrio entre el desempeño obtenido y los recursos necesarios para ejecutarlo. Además, el modelo se entrenaba con señales obtenidas de cada usuario, lo que permitía ajustarlo a las diferencias individuales del EOG [22].
+
+Durante las pruebas, los movimientos reconocidos se utilizaron como comandos para dirigir el robot por diferentes trayectorias. Después de 30 repeticiones se lograron completar las pruebas sin penalizaciones y el tiempo de respuesta disminuyó en promedio un 74,5 %. Esto indica que la práctica también influye en el manejo de la interfaz y que el usuario puede mejorar conforme se familiariza con los comandos [22].
+
+Este paper se relaciona con nuestro proyecto porque reconoce movimientos similares a los que pensamos utilizar y considera las diferencias que puede presentar la señal de cada persona. También muestra que el EOG puede procesarse en tiempo real y convertirse en comandos para controlar un sistema. La principal diferencia es que los autores emplearon estos comandos para dirigir un robot, mientras que nosotros los utilizaremos en una actividad lúdico-interactiva. Asimismo, nuestra calibración permitirá identificar qué movimientos realiza mejor cada usuario y deshabilitar aquellos que no puedan reconocerse de manera estable.
+
+
+## 9. Referencias bibliográficas
 [1] W. H. C. Li, J. O. K. Chung, K. Y. Ho y B. M. C. Kwok, “Play interventions to reduce anxiety and negative emotions in hospitalized children,” BMC Pediatrics, vol. 16, art. 36, 2016. https://doi.org/10.1186/s12887-016-0570-5
 
 [2] A. G. Bjerkan, M. Hulsund, H. B. H. Brenne y M.-E. Eilertsen, “Nurses’ perspectives on early mobilization of intubated children in the pediatric intensive care unit: a qualitative study of barriers and facilitators,” Frontiers in Pediatrics, 2026. https://doi.org/10.3389/fped.2026.1853836
@@ -235,3 +271,5 @@ https://drive.google.com/file/d/1ySPxCaBtXhvw693gvcDpRNDxQyAkqF78/view?usp=shari
 
 [20] C. Belkhiria y V. Peysakhovich, “Electro-Encephalography and Electro-Oculography in Aeronautics: A Review Over the Last Decade (2010–2020),” Frontiers in Neuroergonomics, vol. 1, art. 606719, 2020. https://doi.org/10.3389/fnrgo.2020.606719
 
+[21] S. Soltani y A. Mahnam, “A practical efficient human computer interface based on saccadic eye movements for people with disabilities,” *Computers in Biology and Medicine*, vol. 70, pp. 163–173, 2016. https://doi.org/10.1016/j.compbiomed.2016.01.012
+[22] F. D. Pérez-Reynoso, L. Rodríguez-Guerrero, J. C. Salgado-Ramírez y R. Ortega-Palacios, “Human–Machine Interface: Multiclass Classification by Machine Learning on 1D EOG Signals for the Control of an Omnidirectional Robot,” Sensors, vol. 21, n.º 17, art. 5882, 2021. https://doi.org/10.3390/s21175882 
