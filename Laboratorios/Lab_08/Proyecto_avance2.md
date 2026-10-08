@@ -272,4 +272,5 @@ Este paper se relaciona con nuestro proyecto porque reconoce movimientos similar
 [20] C. Belkhiria y V. Peysakhovich, “Electro-Encephalography and Electro-Oculography in Aeronautics: A Review Over the Last Decade (2010–2020),” Frontiers in Neuroergonomics, vol. 1, art. 606719, 2020. https://doi.org/10.3389/fnrgo.2020.606719
 
 [21] S. Soltani y A. Mahnam, “A practical efficient human computer interface based on saccadic eye movements for people with disabilities,” *Computers in Biology and Medicine*, vol. 70, pp. 163–173, 2016. https://doi.org/10.1016/j.compbiomed.2016.01.012
+
 [22] F. D. Pérez-Reynoso, L. Rodríguez-Guerrero, J. C. Salgado-Ramírez y R. Ortega-Palacios, “Human–Machine Interface: Multiclass Classification by Machine Learning on 1D EOG Signals for the Control of an Omnidirectional Robot,” Sensors, vol. 21, n.º 17, art. 5882, 2021. https://doi.org/10.3390/s21175882 
