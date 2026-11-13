@@ -1,0 +1,12 @@
+# OpenSignals Event Annotation
+# {"columns": {"labels": ["MAC", "CHANNEL", "ID", "START", "END"]}, "1": {"label": "f", "color": "#7b6ad2", "mac": "98:D3:11:FE:0C:26", "channel": "1"}}
+# EndOfHeader
+98D311FE0C26	A1	1	18.75	18.75	
+98D311FE0C26	A1	1	34.2	34.2	
+98D311FE0C26	A1	1	34.2	34.8	
+98D311FE0C26	A1	1	39.75	39.75	
+98D311FE0C26	A1	1	39.75	40.35	
+98D311FE0C26	A1	1	50.1	50.1	
+98D311FE0C26	A1	1	50.1	50.7	
+98D311FE0C26	A1	1	60.3	60.3	
+98D311FE0C26	A1	1	60.3	60.9	
