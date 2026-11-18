@@ -1,0 +1,11 @@
+archivo,etiqueta,tiempo_inicial_s,tiempo_final_s,tiempo_evento_s,conjunto,linea_base_raw,minimo,maximo,media,mediana,desv_std,rango,n_muestras,n_nan,muestras_en_limite_inf,pct_cerca_inferior,pct_cerca_superior,racha_constante_max_ms,segmento_constante,observaciones
+pestaneo1_001.csv,pestaneo1,18.0,20.0,18.75,training,515.5,0.0,1018.0,415.322,474.0,381.863,1018.0,2000,0,786,39.45,11.65,754,False,posible clipping/saturacion; racha constante de 754 ms
+pestaneo1_002.csv,pestaneo1,33.45,35.45,34.2,training,581.5,0.0,1018.0,448.122,489.5,411.027,1018.0,2000,0,778,38.95,18.4,751,False,posible clipping/saturacion; racha constante de 751 ms
+pestaneo1_003.csv,pestaneo1,39.0,41.0,39.75,training,1018.0,0.0,1018.0,438.42,448.5,418.342,1018.0,2000,0,825,41.3,19.65,806,False,posible clipping/saturacion; racha constante de 806 ms; linea base (primeros 300 ms) saturada: correccion poco confiable
+pestaneo1_004.csv,pestaneo1,49.35,51.35,50.1,testing,502.0,0.0,1018.0,348.512,90.0,410.313,1018.0,2000,0,944,47.5,20.85,795,False,posible clipping/saturacion; racha constante de 795 ms
+pestaneo1_005.csv,pestaneo1,59.55,61.55,60.3,training,1018.0,0.0,1018.0,476.043,568.0,426.653,1018.0,2000,0,771,38.65,21.9,722,False,posible clipping/saturacion; racha constante de 722 ms; linea base (primeros 300 ms) saturada: correccion poco confiable
+reposo_001.csv,reposo,8.0,10.0,,training,489.0,105.0,1018.0,506.367,511.0,149.641,913.0,2000,0,0,0.0,0.35,6,False,sin observaciones
+reposo_002.csv,reposo,25.725,27.725,,training,456.5,0.0,1018.0,520.63,519.0,243.358,1018.0,2000,0,7,0.55,4.3,33,False,posible clipping/saturacion
+reposo_003.csv,reposo,36.225,38.225,,training,517.5,0.0,1018.0,560.32,571.0,170.02,1018.0,2000,0,4,0.2,0.15,4,False,sin observaciones
+reposo_004.csv,reposo,44.175,46.175,,training,564.0,0.0,1018.0,510.559,531.0,256.36,1018.0,2000,0,107,5.7,7.3,101,False,posible clipping/saturacion; racha constante de 101 ms
+reposo_005.csv,reposo,54.45,56.45,,testing,444.5,0.0,1018.0,518.555,523.0,214.991,1018.0,2000,0,46,2.5,2.5,19,False,posible clipping/saturacion

@@ -1,0 +1,41 @@
+Prueba local WebAssembly int8 (Impulse #1, Raw 1D Conv) con node v22.23.4
+== datos_edge_impulse/testing/pestaneo1/pestaneo1_004.csv
+Running inference for Jairo_Villalobos / Señales_biomedicas_EOG_GRUPO11 (version 1)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+{
+  anomaly: 0,
+  results: [
+    { label: 'pestaneo1', value: 0.99609375 },
+    { label: 'reposo', value: 0 }
+  ]
+}
+== datos_edge_impulse/testing/reposo/reposo_005.csv
+Running inference for Jairo_Villalobos / Señales_biomedicas_EOG_GRUPO11 (version 1)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+{
+  anomaly: 0,
+  results: [
+    { label: 'pestaneo1', value: 0 },
+    { label: 'reposo', value: 0.99609375 }
+  ]
+}
+== datos_edge_impulse/training/pestaneo1/pestaneo1_001.csv
+Running inference for Jairo_Villalobos / Señales_biomedicas_EOG_GRUPO11 (version 1)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+{
+  anomaly: 0,
+  results: [
+    { label: 'pestaneo1', value: 0.99609375 },
+    { label: 'reposo', value: 0 }
+  ]
+}
+== datos_edge_impulse/training/reposo/reposo_001.csv
+Running inference for Jairo_Villalobos / Señales_biomedicas_EOG_GRUPO11 (version 1)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+{
+  anomaly: 0,
+  results: [
+    { label: 'pestaneo1', value: 0 },
+    { label: 'reposo', value: 0.99609375 }
+  ]
+}
