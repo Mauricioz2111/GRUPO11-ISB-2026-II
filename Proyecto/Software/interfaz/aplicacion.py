@@ -5,6 +5,10 @@ import numpy as np
 import streamlit as st
 import streamlit.components.v1 as components
 
+import json
+import os
+import subprocess
+from pathlib import Path
 
 st.set_page_config(
     page_title="EOG-Adapta",
@@ -17,7 +21,7 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 # Configuración del prototipo
 # -----------------------------------------------------------------------------
-UMBRAL_CONFIANZA = 0.80
+UMBRAL_CONFIANZA = 0.65
 COLUMNAS = 3
 
 OPCIONES = [
@@ -259,14 +263,69 @@ def confirmar_manual() -> None:
 
 
 def leer_prediccion_real():
-    """Punto de conexión para BITalino + Edge Impulse.
+    """Ejecuta el modelo local de Edge Impulse y devuelve etiqueta y confianza."""
 
-    Debe devolver una tupla (etiqueta, confianza), por ejemplo:
-        return "derecha", 0.91
+    carpeta_interfaz = Path(__file__).resolve().parent
 
-    Mientras no esté conectado el modelo exportado, devuelve None.
-    """
-    return None
+    ejecutable = (
+        carpeta_interfaz
+        / "inferencia_edge_impulse"
+        / "build"
+        / "app.exe"
+    )
+
+    muestra = (
+        carpeta_interfaz
+        / "inferencia_edge_impulse"
+        / "muestra_real.txt"
+    )
+
+    if not ejecutable.exists():
+        st.error(f"No se encontró el modelo: {ejecutable}")
+        return None
+
+    if not muestra.exists():
+        st.error(f"No se encontró la muestra: {muestra}")
+        return None
+
+    try:
+        entorno = os.environ.copy()
+        entorno["PATH"] = (
+            r"C:\msys64\ucrt64\bin;"
+            + entorno.get("PATH", "")
+        )
+
+        proceso = subprocess.run(
+            [str(ejecutable), str(muestra)],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=True,
+            env=entorno,
+            creationflags=(
+                subprocess.CREATE_NO_WINDOW
+                if os.name == "nt"
+                else 0
+            ),
+        )
+
+        lineas = [
+            linea.strip()
+            for linea in proceso.stdout.splitlines()
+            if linea.strip()
+        ]
+
+        resultado = json.loads(lineas[-1])
+
+        etiqueta = resultado["label"]
+        confianza = float(resultado["confidence"])
+
+        return etiqueta, confianza
+
+    except Exception as error:
+        st.error(f"Error al ejecutar Edge Impulse: {error}")
+        return None
 
 
 def reproducir_mensaje(texto: str) -> None:
