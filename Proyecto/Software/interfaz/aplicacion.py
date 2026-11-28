@@ -1,5 +1,7 @@
 from datetime import datetime
 import random
+import time
+import unicodedata
 
 import numpy as np
 import streamlit as st
@@ -23,6 +25,10 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 UMBRAL_CONFIANZA = 0.65
 COLUMNAS = 3
+INTERVALO_SEGURIDAD_REAL_S = 0.60
+
+CARPETA_INFERENCIA = Path(__file__).resolve().parent / "inferencia_edge_impulse"
+RUTA_EJECUTABLE = CARPETA_INFERENCIA / "build" / "app.exe"
 
 OPCIONES = [
     {"icono": "💧", "titulo": "Agua", "mensaje": "Quiero tomar agua"},
@@ -46,7 +52,8 @@ NOMBRES_MOVIMIENTOS = {
 }
 
 ESTADO_INICIAL = {
-    "indice": 0,
+    # Comenzar en una tarjeta central reduce el recorrido máximo.
+    "indice": 1,
     "sistema_activo": True,
     "ultimo_movimiento": None,
     "ultima_confianza": None,
@@ -58,6 +65,10 @@ ESTADO_INICIAL = {
     "intentos": 0,
     "objetivo": random.choice(list(NOMBRES_MOVIMIENTOS.keys())[:-1]),
     "demo_confidence": 0.95,
+    "ultimo_comando_tiempo": 0.0,
+    "latencia_modelo_ms": None,
+    "ultima_muestra": None,
+    "estado_procesamiento": "Esperando una señal",
 }
 
 for clave, valor in ESTADO_INICIAL.items():
@@ -176,6 +187,23 @@ st.markdown(
 # -----------------------------------------------------------------------------
 # Lógica de control
 # -----------------------------------------------------------------------------
+def normalizar_etiqueta(etiqueta: str) -> str:
+    """Uniformiza etiquetas como pestañeo1, pestaneo1 o pesta_eo1."""
+    texto = unicodedata.normalize("NFKD", str(etiqueta).lower())
+    texto = "".join(caracter for caracter in texto if not unicodedata.combining(caracter))
+    texto = texto.replace("_", "").replace("-", "").replace(" ", "")
+
+    alias = {
+        "pestaeo1": "pestaneo1",
+        "pestaneo1": "pestaneo1",
+        "pestaeo2": "pestaneo2",
+        "pestaneo2": "pestaneo2",
+        "pestaeo3": "pestaneo3",
+        "pestaneo3": "pestaneo3",
+    }
+    return alias.get(texto, texto)
+
+
 def registrar_evento(resultado: str, movimiento: str, confianza: float) -> None:
     st.session_state.historial.insert(
         0,
@@ -207,9 +235,29 @@ def mover_seleccion(movimiento: str) -> None:
         st.session_state.indice = nuevo_indice
 
 
-def procesar_movimiento(movimiento: str, confianza: float) -> None:
+def procesar_movimiento(
+    movimiento: str,
+    confianza: float,
+    origen: str = "real",
+) -> None:
+    movimiento = normalizar_etiqueta(movimiento)
     st.session_state.ultimo_movimiento = movimiento
     st.session_state.ultima_confianza = confianza
+
+    ahora = time.monotonic()
+
+    if movimiento not in NOMBRES_MOVIMIENTOS:
+        st.session_state.estado_procesamiento = (
+            f"Etiqueta desconocida ({movimiento}): no se ejecutó ninguna acción"
+        )
+        registrar_evento("Ignorado: etiqueta desconocida", movimiento, confianza)
+        return
+
+    # Reposo no desplaza la interfaz.
+    if movimiento == "reposo":
+        st.session_state.estado_procesamiento = "Sistema preparado para el siguiente comando"
+        registrar_evento("Sin acción", movimiento, confianza)
+        return
 
     # La ayuda y la reactivación permanecen disponibles aunque el sistema esté pausado.
     if not st.session_state.sistema_activo and movimiento not in {"cejas", "pestaneo3"}:
@@ -217,7 +265,19 @@ def procesar_movimiento(movimiento: str, confianza: float) -> None:
         return
 
     if movimiento != "reposo" and confianza < UMBRAL_CONFIANZA:
+        st.session_state.estado_procesamiento = "Señal no concluyente: no se ejecutó ninguna acción"
         registrar_evento("Ignorado: baja confianza", movimiento, confianza)
+        return
+
+    # En señal real evita dobles activaciones accidentales. En demostración cada
+    # clic representa una orden independiente, aunque repita la dirección.
+    if (
+        origen == "real"
+        and ahora - st.session_state.ultimo_comando_tiempo
+        < INTERVALO_SEGURIDAD_REAL_S
+    ):
+        st.session_state.estado_procesamiento = "Comando bloqueado por intervalo de seguridad"
+        registrar_evento("Ignorado: intervalo de seguridad", movimiento, confianza)
         return
 
     resultado = "Sin acción"
@@ -230,9 +290,9 @@ def procesar_movimiento(movimiento: str, confianza: float) -> None:
         st.session_state.resultado = "confirmado"
         resultado = f"Confirmado: {opcion['titulo']}"
     elif movimiento == "pestaneo2":
-        st.session_state.mensaje = "Selección cancelada"
-        st.session_state.resultado = "cancelado"
-        resultado = "Cancelado"
+        # Se conserva como clase del modelo, pero no se asigna a cancelar
+        # para evitar confusiones entre cantidades de pestañeos.
+        resultado = "Detectado: sin acción asignada"
     elif movimiento == "pestaneo3":
         st.session_state.alerta_ayuda = True
         st.session_state.mensaje = "Necesito ayuda inmediata"
@@ -242,12 +302,16 @@ def procesar_movimiento(movimiento: str, confianza: float) -> None:
         st.session_state.sistema_activo = not st.session_state.sistema_activo
         resultado = "Sistema reactivado" if st.session_state.sistema_activo else "Sistema pausado"
 
+    st.session_state.ultimo_comando_tiempo = ahora
+    st.session_state.estado_procesamiento = resultado
     registrar_evento(resultado, movimiento, confianza)
 
 
 def seleccionar_manual(indice: int) -> None:
     st.session_state.indice = indice
-    st.session_state.mensaje = OPCIONES[indice]["mensaje"]
+    st.session_state.mensaje = (
+        f"{OPCIONES[indice]['titulo']} seleccionado. Confirme para comunicar."
+    )
     st.session_state.resultado = "esperando"
 
 
@@ -262,26 +326,18 @@ def confirmar_manual() -> None:
     st.session_state.resultado = "confirmado"
 
 
-def leer_prediccion_real():
+def obtener_muestras_disponibles() -> list[Path]:
+    """Devuelve las muestras .txt disponibles para la demostración."""
+    if not CARPETA_INFERENCIA.exists():
+        return []
+    return sorted(CARPETA_INFERENCIA.glob("*.txt"), key=lambda ruta: ruta.name.lower())
+
+
+def leer_prediccion_real(muestra: Path):
     """Ejecuta el modelo local de Edge Impulse y devuelve etiqueta y confianza."""
 
-    carpeta_interfaz = Path(__file__).resolve().parent
-
-    ejecutable = (
-        carpeta_interfaz
-        / "inferencia_edge_impulse"
-        / "build"
-        / "app.exe"
-    )
-
-    muestra = (
-        carpeta_interfaz
-        / "inferencia_edge_impulse"
-        / "muestra_real.txt"
-    )
-
-    if not ejecutable.exists():
-        st.error(f"No se encontró el modelo: {ejecutable}")
+    if not RUTA_EJECUTABLE.exists():
+        st.error(f"No se encontró el modelo: {RUTA_EJECUTABLE}")
         return None
 
     if not muestra.exists():
@@ -289,6 +345,7 @@ def leer_prediccion_real():
         return None
 
     try:
+        inicio = time.perf_counter()
         entorno = os.environ.copy()
         entorno["PATH"] = (
             r"C:\msys64\ucrt64\bin;"
@@ -296,7 +353,7 @@ def leer_prediccion_real():
         )
 
         proceso = subprocess.run(
-            [str(ejecutable), str(muestra)],
+            [str(RUTA_EJECUTABLE), str(muestra)],
             capture_output=True,
             text=True,
             encoding="utf-8",
@@ -309,6 +366,7 @@ def leer_prediccion_real():
                 else 0
             ),
         )
+        latencia_ms = (time.perf_counter() - inicio) * 1000
 
         lineas = [
             linea.strip()
@@ -318,10 +376,10 @@ def leer_prediccion_real():
 
         resultado = json.loads(lineas[-1])
 
-        etiqueta = resultado["label"]
+        etiqueta = normalizar_etiqueta(resultado["label"])
         confianza = float(resultado["confidence"])
 
-        return etiqueta, confianza
+        return etiqueta, confianza, latencia_ms
 
     except Exception as error:
         st.error(f"Error al ejecutar Edge Impulse: {error}")
@@ -358,6 +416,10 @@ with st.sidebar:
     texto_estado = "● SISTEMA ACTIVO" if st.session_state.sistema_activo else "⏸ SISTEMA PAUSADO"
     st.markdown(f'<div class="estado-linea {clase_estado}">{texto_estado}</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="estado-linea modo">Modo: {modo}</div>', unsafe_allow_html=True)
+    st.caption(
+        f"Umbral de aceptación: {UMBRAL_CONFIANZA * 100:.0f}%. "
+        "Una predicción menor no ejecuta acciones."
+    )
 
     if modo == "Demostración":
         confianza_demo = st.slider(
@@ -372,34 +434,59 @@ with st.sidebar:
         c1, c2 = st.columns(2)
         with c1:
             if st.button("⬅ Izquierda"):
-                procesar_movimiento("izquierda", confianza_demo)
+                procesar_movimiento("izquierda", confianza_demo, origen="demo")
             if st.button("⬆ Arriba"):
-                procesar_movimiento("arriba", confianza_demo)
+                procesar_movimiento("arriba", confianza_demo, origen="demo")
         with c2:
             if st.button("➡ Derecha"):
-                procesar_movimiento("derecha", confianza_demo)
+                procesar_movimiento("derecha", confianza_demo, origen="demo")
             if st.button("⬇ Abajo"):
-                procesar_movimiento("abajo", confianza_demo)
+                procesar_movimiento("abajo", confianza_demo, origen="demo")
 
         if st.button("🤨 Cejas — Pausar/reactivar"):
-            procesar_movimiento("cejas", confianza_demo)
+            procesar_movimiento("cejas", confianza_demo, origen="demo")
         if st.button("😉 Pestañeo 1 — Confirmar"):
-            procesar_movimiento("pestaneo1", confianza_demo)
-        if st.button("😉😉 Pestañeo 2 — Cancelar"):
-            procesar_movimiento("pestaneo2", confianza_demo)
+            procesar_movimiento("pestaneo1", confianza_demo, origen="demo")
+        if st.button("😉😉 Pestañeo 2 — Sin acción"):
+            procesar_movimiento("pestaneo2", confianza_demo, origen="demo")
         if st.button("🆘 Pestañeo 3 — Ayuda", type="primary"):
-            procesar_movimiento("pestaneo3", confianza_demo)
+            procesar_movimiento("pestaneo3", confianza_demo, origen="demo")
         if st.button("⚪ Reposo"):
-            procesar_movimiento("reposo", 1.0)
+            procesar_movimiento("reposo", 1.0, origen="demo")
 
     elif modo == "Señal real":
-        st.info("Conector preparado. Falta incorporar el modelo exportado y la adquisición BITalino.")
-        if st.button("Leer una predicción"):
-            prediccion = leer_prediccion_real()
+        muestras_disponibles = obtener_muestras_disponibles()
+
+        if RUTA_EJECUTABLE.exists():
+            st.success("Modelo de Edge Impulse disponible.")
+        else:
+            st.error("No se encontró build/app.exe.")
+
+        st.caption(
+            "Esta prueba utiliza una muestra EOG real pregrabada. "
+            "La adquisición continua por BITalino queda como siguiente etapa."
+        )
+
+        muestra_seleccionada = None
+        if muestras_disponibles:
+            muestra_seleccionada = st.selectbox(
+                "Muestra EOG",
+                options=muestras_disponibles,
+                format_func=lambda ruta: ruta.name,
+            )
+        else:
+            st.warning("No se encontraron muestras .txt.")
+
+        puede_predecir = RUTA_EJECUTABLE.exists() and muestra_seleccionada is not None
+        if st.button("Leer una predicción", disabled=not puede_predecir):
+            prediccion = leer_prediccion_real(muestra_seleccionada)
             if prediccion is None:
-                st.warning("Todavía no existe una fuente EOG conectada.")
+                st.warning("No se pudo procesar la muestra seleccionada.")
             else:
-                procesar_movimiento(*prediccion)
+                etiqueta, confianza, latencia_ms = prediccion
+                st.session_state.latencia_modelo_ms = latencia_ms
+                st.session_state.ultima_muestra = muestra_seleccionada.name
+                procesar_movimiento(etiqueta, confianza, origen="real")
 
     else:
         st.info("Realice cada movimiento cuando lo solicite el evaluador.")
@@ -433,6 +520,15 @@ m2.metric("Movimiento detectado", movimiento_mostrado)
 m3.metric("Confianza", confianza_mostrada)
 m4.metric("Entrada", "Simulación" if modo == "Demostración" else modo)
 
+st.caption(st.session_state.estado_procesamiento)
+if st.session_state.latencia_modelo_ms is not None:
+    st.caption(
+        f"Ejecución del modelo: {st.session_state.latencia_modelo_ms:.1f} ms. "
+        "Este valor no incluye los aproximadamente 3 s de adquisición de la ventana."
+    )
+    if st.session_state.ultima_muestra:
+        st.caption(f"Muestra procesada: {st.session_state.ultima_muestra}")
+
 if st.session_state.alerta_ayuda:
     st.markdown('<div class="ayuda">🆘 SOLICITUD DE AYUDA ACTIVADA</div>', unsafe_allow_html=True)
     if st.button("Desactivar alerta de ayuda"):
@@ -449,7 +545,8 @@ if modulo == "Comunicación":
     st.header("Panel de comunicación")
     st.caption(
         "Utilice izquierda, derecha, arriba y abajo para navegar. "
-        "Un pestañeo confirma, dos cancelan y tres solicitan ayuda."
+        "Un pestañeo confirma y tres solicitan ayuda. "
+        "La navegación es circular para reducir el recorrido."
     )
 
     for inicio in range(0, len(OPCIONES), COLUMNAS):
@@ -462,14 +559,15 @@ if modulo == "Comunicación":
             seleccionada = indice == st.session_state.indice
             clase = "tarjeta seleccionada" if seleccionada else "tarjeta"
             with columna:
+                tarjeta_html = (
+                    f'<div class="{clase}">'
+                    f'<div class="icono">{opcion["icono"]}</div>'
+                    f'<div class="titulo-tarjeta">{opcion["titulo"]}</div>'
+                    f'<div class="mensaje-tarjeta">{opcion["mensaje"]}</div>'
+                    f'</div>'
+                )
                 st.markdown(
-                    f"""
-                    <div class="{clase}">
-                        <div class="icono">{opcion['icono']}</div>
-                        <div class="titulo-tarjeta">{opcion['titulo']}</div>
-                        <div class="mensaje-tarjeta">{opcion['mensaje']}</div>
-                    </div>
-                    """,
+                    tarjeta_html,
                     unsafe_allow_html=True,
                 )
                 if modo == "Demostración":
@@ -539,7 +637,7 @@ else:
 
     s1, s2, s3 = st.columns(3)
     s1.metric("BITalino", "Pendiente" if modo != "Señal real" else "Sin conexión")
-    s2.metric("Modelo", "Interfaz preparada")
+    s2.metric("Modelo", "Disponible" if RUTA_EJECUTABLE.exists() else "No encontrado")
     s3.metric("Calidad de señal", "Sin evaluar")
 
     st.subheader("Historial de eventos")

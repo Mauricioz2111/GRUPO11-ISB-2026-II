@@ -1,0 +1,12 @@
+archivo,etiqueta,tiempo_inicial_s,tiempo_final_s,tiempo_evento_s,conjunto,linea_base_raw,minimo,maximo,media,mediana,desv_std,rango,n_muestras,n_nan,muestras_en_limite_inf,pct_cerca_inferior,pct_cerca_superior,racha_constante_max_ms,segmento_constante,observaciones
+pestaneo2_001.csv,pestaneo2,14.95,16.95,15.45,training,1018.0,0.0,1018.0,374.309,0.0,472.182,1018.0,2000,0,1156,57.85,33.4,641,False,posible clipping/saturacion; racha constante de 641 ms; linea base (primeros 300 ms) saturada: correccion poco confiable
+pestaneo2_002.csv,pestaneo2,20.65,22.65,21.15,training,0.0,0.0,1018.0,278.44,0.0,395.338,1018.0,2000,0,1175,58.95,16.4,645,False,posible clipping/saturacion; racha constante de 645 ms; linea base (primeros 300 ms) saturada: correccion poco confiable
+pestaneo2_003.csv,pestaneo2,25.9,27.9,26.4,training,270.5,0.0,1018.0,481.711,489.0,291.099,1018.0,2000,0,207,10.7,4.75,90,False,posible clipping/saturacion; racha constante de 90 ms
+pestaneo2_004.csv,pestaneo2,32.05,34.05,32.55,testing,443.0,0.0,1018.0,529.551,536.0,270.329,1018.0,2000,0,147,7.4,6.5,93,False,posible clipping/saturacion; racha constante de 93 ms
+pestaneo2_005.csv,pestaneo2,37.0,39.0,37.5,training,1018.0,0.0,1018.0,501.194,429.5,366.09,1018.0,2000,0,282,14.6,23.95,210,False,posible clipping/saturacion; racha constante de 210 ms; linea base (primeros 300 ms) saturada: correccion poco confiable
+pestaneo2_006.csv,pestaneo2,43.15,45.15,43.65,training,103.5,0.0,1018.0,587.768,627.0,312.755,1018.0,2000,0,217,11.05,11.45,105,False,posible clipping/saturacion; racha constante de 105 ms
+reposo_p2_001.csv,reposo,6.475,8.475,,training,0.0,0.0,1018.0,517.878,526.0,329.664,1018.0,2000,0,303,15.25,14.35,89,False,posible clipping/saturacion; racha constante de 89 ms; linea base (primeros 300 ms) saturada: correccion poco confiable
+reposo_p2_002.csv,reposo,17.8,19.8,,training,523.0,0.0,980.0,491.827,503.5,184.558,980.0,2000,0,30,1.6,0.0,15,False,posible clipping/saturacion
+reposo_p2_003.csv,reposo,23.275,25.275,,training,654.0,162.0,1018.0,626.002,623.0,143.878,856.0,2000,0,0,0.0,0.35,4,False,sin observaciones
+reposo_p2_004.csv,reposo,28.975,30.975,,training,447.0,94.0,1018.0,492.138,497.0,150.333,924.0,2000,0,0,0.0,0.9,11,False,sin observaciones
+reposo_p2_005.csv,reposo,40.075,42.075,,testing,556.5,0.0,884.0,497.438,502.0,141.044,884.0,2000,0,3,0.2,0.0,3,False,sin observaciones

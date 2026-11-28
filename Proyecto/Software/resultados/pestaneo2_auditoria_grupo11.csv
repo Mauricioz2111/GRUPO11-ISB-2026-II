@@ -1,0 +1,6 @@
+clase,origen_probable,training,test,duracion_muestra,ejes,nombre_eje,frecuencia,compatible_con_eog_a1_1eje_2s
+pestaneo1,Jairo (17-nov),4,1,2 s,1,eog_a1,1000 Hz (CSV propio; no re-verificada en la UI),si
+pestaneo2,"Jairo (hoy, JSON)",5,1,2 s,1,eog_a1,1000 Hz (JSON interval_ms=1.0),si
+reposo,Jairo (4 de 17-nov + 4 reposo_p2),8,2,2 s,1,eog_a1,1000 Hz,si (reposo_p2_001 contaminada)
+mov5,compañero (CSV Wizard mov5.csv),5,0,~1 s (993 ms-1 s),2,"A1, A2",no mostrada por la UI,"NO: 2 ejes (A1,A2) y 1 s"
+mov6,compañero,0,7,~1 s,2,"A1, A2",no mostrada por la UI,"NO: 2 ejes (A1,A2) y 1 s"
